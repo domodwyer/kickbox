@@ -9,7 +9,7 @@ Install a tagged version with: `go get gopkg.in/domodwyer/kickbox.v1`
 // Create a new client with your API key
 kickbox := kickbox.NewClient("KICKBOX_TEST")
 
-// Validate an email address
+// Verify an email address
 result, err := kickbox.Verify("dom@itsallbroken.com")
 if err != nil {
 	panic("Something went wrong :( ")
