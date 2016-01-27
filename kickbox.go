@@ -15,10 +15,14 @@ type Client struct {
 }
 
 func NewClient(apiKey string) Client {
-	return Client{
+	client := Client{
 		apiKey: apiKey,
 		http:   http.Client{},
 	}
+
+	// Set the default timeout to 3 seconds
+	client.SetTimeout(time.Second * 3)
+	return client
 }
 
 // Configure the request timeout value (includes connecting, waiting for a response, and reading the response)
