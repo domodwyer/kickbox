@@ -24,6 +24,7 @@ func TestNewClient(t *testing.T) {
 	}
 }
 
+// Test the correct API URL is generated
 func TestUrl(t *testing.T) {
 	client := NewClient("KICKBOX_TEST")
 
@@ -31,7 +32,11 @@ func TestUrl(t *testing.T) {
 		address string
 		url     string
 	}{
-		{"dom@itsallbroken.com", "test"},
+		{"dom@itsallbroken.com", "https://api.kickbox.io/v2/verify?email=dom%40itsallbroken.com&apikey=KICKBOX_TEST"},
+		{"somEjuNK@*($@.2coen19e,1.2e12e.1", "https://api.kickbox.io/v2/verify?email=somEjuNK%40%2A%28%24%40.2coen19e%2C1.2e12e.1&apikey=KICKBOX_TEST"},
+		{"a", "https://api.kickbox.io/v2/verify?email=a&apikey=KICKBOX_TEST"},
+		{"123", "https://api.kickbox.io/v2/verify?email=123&apikey=KICKBOX_TEST"},
+		{"", "https://api.kickbox.io/v2/verify?email=&apikey=KICKBOX_TEST"},
 	}
 
 	for _, test := range tests {
