@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/domodwyer/kickbox.svg?branch=master)](https://travis-ci.org/domodwyer/kickbox)
 # kickbox
 An easy-to-use Go library using Kickbox.io for email address validation
 
