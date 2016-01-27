@@ -26,14 +26,17 @@ func (c Client) SetTimeout(time time.Duration) {
 	c.http.Timeout = time
 }
 
+// Verify the given email address using Kickbox.io
 func (c Client) Verify(address string) (*Result, error) {
 	return c.verify(KickboxResultBuilder{}, c.url(address))
 }
 
+// Build the API endpoint given the email address and API key
 func (c Client) url(address string) string {
 	return fmt.Sprintf("https://api.kickbox.io/v2/verify?email=%s&apikey=%s", url.QueryEscape(address), url.QueryEscape(c.apiKey))
 }
 
+// Request and read the response of the HTTP request, returning a new Result struct
 func (c Client) verify(rb ResultBuilder, url string) (*Result, error) {
 	// Send our API request
 	response, err := c.http.Get(url)
