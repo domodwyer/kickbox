@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"time"
 )
 
 type Client struct {
@@ -18,6 +19,11 @@ func NewClient(apiKey string) Client {
 		apiKey: apiKey,
 		http:   http.Client{},
 	}
+}
+
+// Configure the request timeout value (includes connecting, waiting for a response, and reading the response)
+func (c Client) SetTimeout(time time.Duration) {
+	c.http.Timeout = time
 }
 
 func (c Client) Verify(address string) (*Result, error) {
