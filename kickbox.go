@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
 	"time"
@@ -23,7 +22,7 @@ func NewClient(apiKey string) *Client {
 
 	// Set the default timeout to 3 seconds
 	client.SetTimeout(time.Second * 3)
-	return *client
+	return &client
 }
 
 // Configure the request timeout value (includes connecting, waiting for a response, and reading the response)
