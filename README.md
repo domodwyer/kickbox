@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/domodwyer/kickbox.svg?branch=master)](https://travis-ci.org/domodwyer/kickbox)
+[![Build Status](https://travis-ci.org/domodwyer/kickbox.svg?branch=master)](https://travis-ci.org/domodwyer/kickbox) [![GoDoc](https://godoc.org/github.com/domodwyer/kickbox?status.svg)](https://godoc.org/github.com/domodwyer/kickbox)
 # kickbox
 An easy-to-use Go library using Kickbox.io for email address validation
 
@@ -12,7 +12,7 @@ kickbox := kickbox.NewClient("KICKBOX_TEST")
 // Verify an email address
 result, err := kickbox.Verify("dom@itsallbroken.com")
 if err != nil {
-	panic("Something went wrong :( ")
+	panic("something went wrong :( ")
 }
 
 // Interact with the response!
@@ -22,7 +22,7 @@ if(result.IsDeliverable()) {
 ```
 
 ##Usage
-The `Verify()` returns an instance of `Kickbox.Result` and is mapped onto the Kickbox API response:
+The `Verify()` method returns an instance of `Kickbox.Result` and is mapped onto the Kickbox API response:
 
 ```Go
 type Result struct {
