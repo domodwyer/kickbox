@@ -28,8 +28,8 @@ func NewClient(apiKey string) *Client {
 	return client
 }
 
-// Configure the request timeout value (includes connecting, waiting for a response, and reading the response)
-func (c Client) SetTimeout(time time.Duration) {
+// SetTimeout configures the request timeout value (includes connecting, waiting for a response, and reading the response)
+func (c *Client) SetTimeout(time time.Duration) {
 	c.http.Timeout = time
 }
 
