@@ -1,11 +1,11 @@
 package kickbox
 
-// Define our interface
+// ResultBuilder defines our interface for creating Result objects 
 type ResultBuilder interface {
 	NewResult(response []byte) (*Result, error)
 }
 
-// This is our actual Result struct we store the API response in
+// Result struct we store the API response in
 type Result struct {
 	Success    bool    `json:"success"`
 	Result     string  `json:"result"`

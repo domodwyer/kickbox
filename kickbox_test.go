@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"time"
 )
 
 type TestResultBuilder struct{}
@@ -21,6 +22,16 @@ func TestNewClient(t *testing.T) {
 
 	if client.apiKey != expect {
 		t.Error("Client API key not as expected")
+	}
+}
+
+// Ensure the Timeout is set
+func TestNewClient_setTimeout(t *testing.T) {
+	client := NewClient("KICKBOX_TEST")
+
+	client.SetTimeout(time.Second * 8)
+	if client.http.Timeout != (time.Second * 8) {
+		t.Error("Timeout not set")
 	}
 }
 

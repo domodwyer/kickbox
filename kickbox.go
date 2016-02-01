@@ -9,24 +9,27 @@ import (
 	"time"
 )
 
+// Client holds the HTTP client for interacting with the API, and associated 
+// configuration
 type Client struct {
 	apiKey string
 	http   http.Client
 }
 
+// NewClient returns an instance of a Client
 func NewClient(apiKey string) *Client {
-	client := Client{
+	client := &Client{
 		apiKey: apiKey,
 		http:   http.Client{},
 	}
 
 	// Set the default timeout to 3 seconds
 	client.SetTimeout(time.Second * 3)
-	return &client
+	return client
 }
 
-// Configure the request timeout value (includes connecting, waiting for a response, and reading the response)
-func (c Client) SetTimeout(time time.Duration) {
+// SetTimeout configures the request timeout value (includes connecting, waiting for a response, and reading the response)
+func (c *Client) SetTimeout(time time.Duration) {
 	c.http.Timeout = time
 }
 
