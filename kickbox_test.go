@@ -26,6 +26,15 @@ func TestNewClient(t *testing.T) {
 }
 
 // Ensure the default timeout is set
+func TestNewClient_setDefaultTimeout(t *testing.T) {
+	client := NewClient("KICKBOX_TEST")
+
+	if client.http.Timeout != (time.Second * 3) {
+		t.Error("Default timeout not set")
+	}
+}
+
+// Ensure the timeout is settable
 func TestNewClient_setTimeout(t *testing.T) {
 	client := NewClient("KICKBOX_TEST")
 
