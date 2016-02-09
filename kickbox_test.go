@@ -25,7 +25,7 @@ func TestNewClient(t *testing.T) {
 	}
 }
 
-// Ensure the Timeout is set
+// Ensure the default timeout is set
 func TestNewClient_setTimeout(t *testing.T) {
 	client := NewClient("KICKBOX_TEST")
 
@@ -35,8 +35,8 @@ func TestNewClient_setTimeout(t *testing.T) {
 	}
 }
 
-// Test the correct API URL is generated
-func TestUrl(t *testing.T) {
+// Test the correct API URL is generated - email
+func TestUrl_email(t *testing.T) {
 	client := NewClient("KICKBOX_TEST")
 
 	tests := []struct {
@@ -53,7 +53,7 @@ func TestUrl(t *testing.T) {
 	for _, test := range tests {
 		actual := client.url(test.address)
 		if test.url != actual {
-			t.Error("URL generation failed", test.url, actual)
+			t.Error("URL generation failed expected: ", test.url, " got: ", actual)
 		}
 	}
 }

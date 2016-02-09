@@ -4,7 +4,8 @@ import (
 	"encoding/json"
 )
 
-// KickboxResultBuilder implements our ResultBuilder interface
+// KickboxResultBuilder implements our ResultBuilder interface and creates the
+// actual Result struct (the response from Kickbox)
 type KickboxResultBuilder struct{}
 
 // NewResult creates a new Result object from an JSON API response

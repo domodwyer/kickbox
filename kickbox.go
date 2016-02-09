@@ -9,14 +9,14 @@ import (
 	"time"
 )
 
-// Client holds the HTTP client for interacting with the API, and associated 
-// configuration
+// Client holds the HTTP client for interacting with the API, and the associated
+// API key
 type Client struct {
 	apiKey string
 	http   http.Client
 }
 
-// NewClient returns an instance of a Client
+// NewClient returns an instance of a Kickbox API Client
 func NewClient(apiKey string) *Client {
 	client := &Client{
 		apiKey: apiKey,
