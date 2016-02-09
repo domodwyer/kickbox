@@ -67,6 +67,28 @@ func TestUrl_email(t *testing.T) {
 	}
 }
 
+// Test the correct API URL is generated - API key
+func TestUrl_ApiKey(t *testing.T) {
+	tests := []struct {
+		apiKey string
+		url string
+	}{
+		{"KICKBOX_TEST", "https://api.kickbox.io/v2/verify?email=dom%40itsallbroken.com&apikey=KICKBOX_TEST"},
+		{"somEjuNK@*($@.2coen19e,1.2e12e.1", "https://api.kickbox.io/v2/verify?email=dom%40itsallbroken.com&apikey=somEjuNK%40%2A%28%24%40.2coen19e%2C1.2e12e.1"},
+		{"a", "https://api.kickbox.io/v2/verify?email=dom%40itsallbroken.com&apikey=a"},
+		{"123", "https://api.kickbox.io/v2/verify?email=dom%40itsallbroken.com&apikey=123"},
+		{"", "https://api.kickbox.io/v2/verify?email=dom%40itsallbroken.com&apikey="},
+	}
+
+	for _, test := range tests {
+		client := NewClient(test.apiKey)
+		actual := client.url("dom@itsallbroken.com")
+		if(actual != test.url) {
+			t.Error("URL generation failed expected: ", test.url, " got: ", actual)
+		}
+	}
+}
+
 // Ensure a Result object is returned with a successful request
 func TestVerify_200(t *testing.T) {
 	tb := TestResultBuilder{}
