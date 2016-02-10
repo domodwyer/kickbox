@@ -4,17 +4,18 @@ import (
 	"encoding/json"
 )
 
-// KickboxResultBuilder implements our ResultBuilder interface
+// KickboxResultBuilder implements our ResultBuilder interface and creates the
+// actual Result struct (the response from Kickbox)
 type KickboxResultBuilder struct{}
 
 // NewResult creates a new Result object from an JSON API response
 func (b KickboxResultBuilder) NewResult(response []byte) (*Result, error) {
-	result := Result{}
-	if err := json.Unmarshal(response, &result); err != nil {
+	result := &Result{}
+	if err := json.Unmarshal(response, result); err != nil {
 		return nil, err
 	}
 
-	return &result, nil
+	return result, nil
 }
 
 // IsDeliverable returns true if the API returns "result: deliverable"

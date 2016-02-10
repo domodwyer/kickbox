@@ -25,7 +25,16 @@ func TestNewClient(t *testing.T) {
 	}
 }
 
-// Ensure the Timeout is set
+// Ensure the default timeout is set
+func TestNewClient_setDefaultTimeout(t *testing.T) {
+	client := NewClient("KICKBOX_TEST")
+
+	if client.http.Timeout != (time.Second * 3) {
+		t.Error("Default timeout not set")
+	}
+}
+
+// Ensure the timeout is settable
 func TestNewClient_setTimeout(t *testing.T) {
 	client := NewClient("KICKBOX_TEST")
 
@@ -35,8 +44,8 @@ func TestNewClient_setTimeout(t *testing.T) {
 	}
 }
 
-// Test the correct API URL is generated
-func TestUrl(t *testing.T) {
+// Test the correct API URL is generated - email
+func TestUrl_email(t *testing.T) {
 	client := NewClient("KICKBOX_TEST")
 
 	tests := []struct {
@@ -53,7 +62,29 @@ func TestUrl(t *testing.T) {
 	for _, test := range tests {
 		actual := client.url(test.address)
 		if test.url != actual {
-			t.Error("URL generation failed", test.url, actual)
+			t.Error("URL generation failed expected: ", test.url, " got: ", actual)
+		}
+	}
+}
+
+// Test the correct API URL is generated - API key
+func TestUrl_ApiKey(t *testing.T) {
+	tests := []struct {
+		apiKey string
+		url string
+	}{
+		{"KICKBOX_TEST", "https://api.kickbox.io/v2/verify?email=dom%40itsallbroken.com&apikey=KICKBOX_TEST"},
+		{"somEjuNK@*($@.2coen19e,1.2e12e.1", "https://api.kickbox.io/v2/verify?email=dom%40itsallbroken.com&apikey=somEjuNK%40%2A%28%24%40.2coen19e%2C1.2e12e.1"},
+		{"a", "https://api.kickbox.io/v2/verify?email=dom%40itsallbroken.com&apikey=a"},
+		{"123", "https://api.kickbox.io/v2/verify?email=dom%40itsallbroken.com&apikey=123"},
+		{"", "https://api.kickbox.io/v2/verify?email=dom%40itsallbroken.com&apikey="},
+	}
+
+	for _, test := range tests {
+		client := NewClient(test.apiKey)
+		actual := client.url("dom@itsallbroken.com")
+		if(actual != test.url) {
+			t.Error("URL generation failed expected: ", test.url, " got: ", actual)
 		}
 	}
 }
