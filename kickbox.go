@@ -50,6 +50,7 @@ func (c Client) verify(rb ResultBuilder, url string) (*Result, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer response.Body.Close()
 
 	// Did we get a HTTP 200?
 	if response.StatusCode != 200 {
@@ -58,7 +59,6 @@ func (c Client) verify(rb ResultBuilder, url string) (*Result, error) {
 	}
 
 	// Read the response
-	defer response.Body.Close()
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		return nil, err
