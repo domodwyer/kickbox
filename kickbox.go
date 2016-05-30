@@ -54,7 +54,7 @@ func (c Client) verify(rb ResultBuilder, url string) (*Result, error) {
 
 	// Did we get a HTTP 200?
 	if response.StatusCode != 200 {
-		msg := fmt.Sprintf("Kickbox API returned HTTP %d", response.Status)
+		msg := fmt.Sprintf("Kickbox API returned HTTP %d", response.StatusCode)
 		return nil, errors.New(msg)
 	}
 

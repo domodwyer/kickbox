@@ -3,7 +3,7 @@
 An easy-to-use Go library using Kickbox.io for email address validation
 
 ##Example
-Install a tagged version with: `go get gopkg.in/domodwyer/kickbox.v1`
+Install a tagged version with: `go get github.com/domodwyer/kickbox`
 
 ```Go
 // Create a new client with your API key
