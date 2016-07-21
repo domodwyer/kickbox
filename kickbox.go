@@ -13,14 +13,14 @@ import (
 // API key
 type Client struct {
 	apiKey string
-	http   http.Client
+	http   *http.Client
 }
 
 // NewClient returns an instance of a Kickbox API Client
 func NewClient(apiKey string) *Client {
 	client := &Client{
 		apiKey: apiKey,
-		http:   http.Client{},
+		http:   &http.Client{},
 	}
 
 	// Set the default timeout to 3 seconds
@@ -31,6 +31,11 @@ func NewClient(apiKey string) *Client {
 // SetTimeout configures the request timeout value (includes connecting, waiting for a response, and reading the response)
 func (c *Client) SetTimeout(time time.Duration) {
 	c.http.Timeout = time
+}
+
+// SetHttpClient configures the request to use a custom http client.
+func (c *Client) SetHttpClient(client *http.Client) {
+	c.http = client
 }
 
 // Verify the given email address using Kickbox.io
