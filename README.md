@@ -2,7 +2,7 @@
 # kickbox
 An easy-to-use Go library using Kickbox.io for email address validation
 
-##Example
+## Example
 Install a tagged version with: `go get github.com/domodwyer/kickbox`
 
 ```Go
@@ -21,7 +21,7 @@ if(result.IsDeliverable()) {
 }
 ```
 
-##Usage
+## Usage
 The `Verify()` method returns an instance of `Kickbox.Result` and is mapped onto the Kickbox API response:
 
 ```Go
