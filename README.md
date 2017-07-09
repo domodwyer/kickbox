@@ -7,10 +7,10 @@ Install a tagged version with: `go get github.com/domodwyer/kickbox`
 
 ```Go
 // Create a new client with your API key
-kickbox := kickbox.NewClient("KICKBOX_TEST")
+kb := kickbox.NewClient("KICKBOX_TEST")
 
 // Verify an email address
-result, err := kickbox.Verify("dom@itsallbroken.com")
+result, err := kb.Verify("dom@itsallbroken.com")
 if err != nil {
 	panic("something went wrong :( ")
 }
