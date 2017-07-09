@@ -42,7 +42,7 @@ type Result struct {
 }
 ```
 
-For convenience `Kickbox.Result` also recieves several helper methods:
+For convenience `Result` also recieves several helper methods:
 ```Go
 func (r Result) IsDeliverable() bool {
 	return (r.Result == "deliverable")
